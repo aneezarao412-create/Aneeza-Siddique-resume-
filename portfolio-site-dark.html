@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aneeza Siddique — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15130F;
+    --card:#1D1A14;
+    --gold:#D3AA65;
+    --gold-soft:#E9DBB8;
+    --cream:#F4F0E6;
+    --ink-soft:#A69E8C;
+    --line:#332D22;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--bg); color:var(--cream);
+    font-family:'Inter',sans-serif; line-height:1.65;
+  }
+  h1,h2,h3{ font-family:'Playfair Display',serif; margin:0; }
+  .mono{ font-family:'Space Mono',monospace; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 30px; }
+
+  nav{ position:sticky; top:0; z-index:50; background:rgba(21,19,15,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+  .nav-inner{ display:flex; justify-content:space-between; align-items:center; padding:18px 30px; max-width:1040px; margin:0 auto; }
+  .brand{ font-family:'Playfair Display',serif; font-weight:600; font-size:1.1rem; color:var(--gold-soft); }
+  .nav-links{ display:flex; gap:26px; font-size:.82rem; }
+  .nav-links a{ color:var(--ink-soft); text-decoration:none; letter-spacing:.02em; }
+  .nav-links a:hover{ color:var(--gold); }
+
+  header.hero{ padding:88px 0 70px; text-align:center; position:relative; }
+  .hero::before{
+    content:""; position:absolute; top:40px; left:50%; transform:translateX(-50%);
+    width:1px; height:44px; background:var(--gold);
+  }
+  .eyebrow{ font-family:'Space Mono',monospace; font-size:.74rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:20px; }
+  h1.name{ font-size:clamp(2.6rem,6vw,4.2rem); font-weight:600; margin-bottom:16px; color:var(--cream); }
+  .hero-role{ font-family:'Playfair Display',serif; font-style:italic; font-size:1.15rem; color:var(--gold-soft); margin-bottom:24px; }
+  .hero-desc{ color:var(--ink-soft); max-width:56ch; margin:0 auto 32px; font-size:1rem; }
+  .btn-row{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+  .btn{ font-size:.86rem; text-decoration:none; padding:13px 28px; letter-spacing:.03em; }
+  .btn.primary{ background:var(--gold); color:var(--bg); font-weight:600; }
+  .btn.primary:hover{ background:var(--gold-soft); }
+  .btn.ghost{ border:1px solid var(--gold); color:var(--gold-soft); }
+  .btn.ghost:hover{ background:var(--gold); color:var(--bg); }
+
+  section{ padding:56px 0; border-top:1px solid var(--line); }
+  .section-head{ text-align:center; margin-bottom:40px; }
+  .section-head .eyebrow{ margin-bottom:8px; }
+  .section-head h2{ font-size:2rem; color:var(--cream); }
+
+  .track-label{ font-family:'Space Mono',monospace; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); text-align:center; margin:30px 0 18px; }
+  .track-label:first-of-type{ margin-top:0; }
+  .exp-grid{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .exp-cell{ background:var(--card); padding:20px 24px; display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .exp-role{ font-weight:600; font-size:1rem; color:var(--cream); }
+  .exp-org{ color:var(--ink-soft); font-size:.86rem; margin-top:2px; }
+  .exp-date{ font-family:'Space Mono',monospace; font-size:.76rem; color:var(--gold); white-space:nowrap; }
+
+  .skill-row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+  .skill-pill{ font-size:.84rem; padding:9px 20px; border:1px solid var(--gold); color:var(--gold-soft); border-radius:2px; }
+
+  .card-grid{ display:grid; gap:1px; background:var(--line); border:1px solid var(--line); grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+  .info-cell{ background:var(--card); padding:20px 24px; }
+
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .cert-cell{ background:var(--card); padding:16px 20px; }
+  .cert-name{ font-weight:600; font-size:.9rem; display:block; color:var(--cream); }
+  .cert-org{ font-family:'Space Mono',monospace; font-size:.7rem; color:var(--gold); }
+
+  .edu-row{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; padding:16px 0; border-bottom:1px solid var(--line); max-width:760px; margin:0 auto; }
+  .edu-row:last-child{ border-bottom:none; }
+  .edu-degree{ font-weight:600; color:var(--cream); font-family:'Playfair Display',serif; }
+  .edu-school{ color:var(--ink-soft); font-size:.86rem; display:block; margin-top:2px; }
+  .edu-years{ font-family:'Space Mono',monospace; font-size:.74rem; color:var(--gold); white-space:nowrap; }
+
+  .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .mini-cell{ background:var(--card); padding:22px 26px; }
+  .mini-cell h3{ font-size:1rem; color:var(--gold-soft); margin-bottom:12px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ font-family:'Space Mono',monospace; font-size:.72rem; padding:5px 12px; border:1px solid var(--line); color:var(--ink-soft); }
+
+  footer{ padding:70px 0 46px; text-align:center; }
+  footer h2{ font-size:clamp(2rem,4.6vw,2.8rem); color:var(--cream); margin-bottom:14px; }
+  footer p.sub{ color:var(--ink-soft); max-width:50ch; margin:0 auto 28px; }
+  .social-row{ display:flex; justify-content:center; gap:20px; font-family:'Space Mono',monospace; font-size:.8rem; margin-top:28px; }
+  .social-row a{ color:var(--ink-soft); text-decoration:none; }
+  .social-row a:hover{ color:var(--gold); }
+  .colophon{ margin-top:24px; font-size:.72rem; color:#5A5442; }
+
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (max-width:760px){
+    .twocol{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } .reveal{ opacity:1; transform:none; } }
+  :focus-visible{ outline:1px solid var(--gold); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="brand">Aneeza Siddique</span>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Islamabad, Pakistan</span>
+    <h1 class="name">Aneeza Siddique</h1>
+    <p class="hero-role">Teacher &amp; Digital Marketer</p>
+    <p class="hero-desc">Teaching and marketing might look like different worlds, but four years of doing both point to the same skill: knowing your audience and meeting them where they are. That's meant leading Qur'an classrooms across Islamabad, and separately building Rao Times Gallery from an idea into a working venture as founder and CEO.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="mailto:aneezarao08@gmail.com">Get in Touch</a>
+      <a class="btn ghost" href="#experience">View Experience</a>
+    </div>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Career</span>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="track-label">Teaching</div>
+    <div class="exp-grid reveal">
+      <div class="exp-cell"><div><p class="exp-role">Qur'an Teacher</p><p class="exp-org">Fatima Public School and College, Burma Town, Islamabad</p></div><span class="exp-date">2024 — Present</span></div>
+      <div class="exp-cell"><div><p class="exp-role">Qur'an Teacher</p><p class="exp-org">Alhuda International University (Online)</p></div><span class="exp-date">2023 — 2024</span></div>
+      <div class="exp-cell"><div><p class="exp-role">Urdu Teacher (Alternate)</p><p class="exp-org">Fatima Public School and College, Burma Town, Islamabad</p></div><span class="exp-date">Nov — Dec 2022</span></div>
+      <div class="exp-cell"><div><p class="exp-role">Mathematics Teacher (Alternate)</p><p class="exp-org">Islamic International University School, Bani Gala Campus, Islamabad</p></div><span class="exp-date">Aug — Sep 2020</span></div>
+      <div class="exp-cell"><div><p class="exp-role">English Teacher (Alternate)</p><p class="exp-org">Fatima Public School and College, Burma Town, Islamabad</p></div><span class="exp-date">Oct 2020</span></div>
+    </div>
+
+    <div class="track-label">Digital Marketing &amp; Business</div>
+    <div class="exp-grid reveal">
+      <div class="exp-cell"><div><p class="exp-role">Digital Marketer &amp; Content Creator</p><p class="exp-org">Dawah Warrior</p></div><span class="exp-date">2025 — Present</span></div>
+      <div class="exp-cell"><div><p class="exp-role">CEO / Digital Marketer</p><p class="exp-org">Rao Times Gallery</p></div><span class="exp-date">2019 — 2022</span></div>
+      <div class="exp-cell"><div><p class="exp-role">Digital Marketer</p><p class="exp-org">Learn Online Qur'an Education</p></div><span class="exp-date">2020 — 2021</span></div>
+      <div class="exp-cell"><div><p class="exp-role">Marketing Advertiser</p><p class="exp-org">WEBWAR Co. Ltd.</p></div><span class="exp-date">Aug — Nov 2020</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Toolkit</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skill-row reveal">
+      <span class="skill-pill">MS Word</span>
+      <span class="skill-pill">MS Excel</span>
+      <span class="skill-pill">MS PowerPoint</span>
+      <span class="skill-pill">Canva</span>
+      <span class="skill-pill">Digital Marketing</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Built</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="card-grid reveal">
+      <div class="info-cell">
+        <p class="exp-role">Rao Times Gallery</p>
+        <p class="exp-org">Founder &amp; digital marketer — an online gallery and marketing venture</p>
+        <span class="exp-date mono">2019 — 2022</span>
+      </div>
+      <div class="info-cell">
+        <p class="exp-role">Marketing Advertiser</p>
+        <p class="exp-org">WEBWAR Co. Ltd.</p>
+        <span class="exp-date mono">Aug — Nov 2020</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="volunteer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Giving Back</span>
+      <h2>Volunteer Work</h2>
+    </div>
+    <div class="card-grid reveal">
+      <div class="info-cell">
+        <p class="exp-role">Brand Representative</p>
+        <p class="exp-org">Alkhidmat Foundation</p>
+        <span class="exp-date mono">2022 — 2023</span>
+      </div>
+      <div class="info-cell">
+        <p class="exp-role">Brand Representative</p>
+        <p class="exp-org">IFMSA</p>
+        <span class="exp-date mono">Jan — May 2020</span>
+      </div>
+      <div class="info-cell">
+        <p class="exp-role">Brand Rep.; Qur'an Teacher &amp; Operations Manager</p>
+        <p class="exp-org">The Scholars</p>
+        <span class="exp-date mono">2022 — Present</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Credentials</span>
+      <h2>Certificates</h2>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-cell"><span class="cert-name">Digital Marketing</span><span class="cert-org">Digi Skills</span></div>
+      <div class="cert-cell"><span class="cert-name">Freelancing</span><span class="cert-org">Digi Skills</span></div>
+      <div class="cert-cell"><span class="cert-name">Applicative Qur'anic Language</span><span class="cert-org">Almidrar Institute</span></div>
+      <div class="cert-cell"><span class="cert-name">Understanding of Qur'an</span><span class="cert-org">Rehman Foundation</span></div>
+      <div class="cert-cell"><span class="cert-name">Tafseer ul Qur'an</span><span class="cert-org">IOU</span></div>
+      <div class="cert-cell"><span class="cert-name">Emotional Intelligence</span><span class="cert-org">IOU</span></div>
+      <div class="cert-cell"><span class="cert-name">NLP</span><span class="cert-org">Alhadid Institute</span></div>
+      <div class="cert-cell"><span class="cert-name">TPI Methodology, Qur'an Learning</span><span class="cert-org">Character Education Foundation</span></div>
+      <div class="cert-cell"><span class="cert-name">TPI for Teachers Training</span><span class="cert-org">Alhuda</span></div>
+      <div class="cert-cell"><span class="cert-name">Islam and Qur'an</span><span class="cert-org">Furqan Studios</span></div>
+      <div class="cert-cell"><span class="cert-name">Professional Development Webinars (20)</span><span class="cert-org">Oxford University Press</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Study</span>
+      <h2>Education</h2>
+    </div>
+    <div class="reveal">
+      <div class="edu-row"><div><span class="edu-degree">Qur'an, Arabic &amp; Psychology</span><span class="edu-school">Ruyaai</span></div><span class="edu-years">2025 — Present</span></div>
+      <div class="edu-row"><div><span class="edu-degree">BS English Language &amp; Literature</span><span class="edu-school">Allama Iqbal Open University</span></div><span class="edu-years">2022 — 2026</span></div>
+      <div class="edu-row"><div><span class="edu-degree">Taddabbur ul Qur'an</span><span class="edu-school">Alhuda International University</span></div><span class="edu-years">2022 — 2023</span></div>
+      <div class="edu-row"><div><span class="edu-degree">Taleem ul Qur'an</span><span class="edu-school">Alhuda International University</span></div><span class="edu-years">2021 — 2022</span></div>
+      <div class="edu-row"><div><span class="edu-degree">Intermediate — FSc Pre-Engineering</span><span class="edu-school">Islamabad College for Girls, F-6/2</span></div><span class="edu-years">2017 — 2019</span></div>
+      <div class="edu-row"><div><span class="edu-degree">Matriculation — Science</span><span class="edu-school">Islamabad Model School for Girls, I-8/1</span></div><span class="edu-years">2015 — 2017</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="twocol reveal">
+      <div class="mini-cell">
+        <h3>Languages</h3>
+        <div class="tag-row">
+          <span class="tag">English</span>
+          <span class="tag">Urdu</span>
+          <span class="tag">Punjabi</span>
+          <span class="tag">Arabic</span>
+        </div>
+      </div>
+      <div class="mini-cell">
+        <h3>Interests</h3>
+        <div class="tag-row">
+          <span class="tag">Book Reading</span>
+          <span class="tag">Digital Marketing</span>
+          <span class="tag">Editing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Get in Touch</span>
+    <h2>Let's build something together.</h2>
+    <p class="sub">Open to jobs and roles in education, HR, content, or marketing — somewhere that needs strong writing, organizing, and people skills in equal measure.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="mailto:aneezarao08@gmail.com">Email Aneeza</a>
+      <a class="btn ghost" href="tel:+92465759836">Call +92 465 759836</a>
+    </div>
+    <div class="social-row">
+      <a href="https://www.linkedin.com/in/aneeza-rao-88b244417?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/dawah_warrior_academy?igsh=NjBranJ5cWVmcWM=" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <p class="colophon">Jaba Taili, Islamabad, Pakistan</p>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.12 });
+  els.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
